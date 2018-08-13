@@ -1,35 +1,42 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import BookCard from '../components/BookCard';
-import { simpleAction } from '../actions/simpleAction'
+import { listBooksAction } from '../actions/listBooksAction'
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 class HomeContainer extends Component {
     render() {
+      const books = this.props.books.books.map((book) =>
+        <BookCard
+          title={book.title}
+          description={book.description}
+          releaseDate= {book.releaseDate}
+          key={book._id} />
+      );
       return (
         <div>
           <h2>Home</h2>
-          <BookCard></BookCard>
-          <button onClick={this.simpleAction}>tesge asdasd</button>
-          <pre>
-          {
-            JSON.stringify(this.props.s)
+
+          { this.props.books.loading &&
+            <CircularProgress size={50} />
           }
-          </pre>
+
+          { books }
         </div>
       )
     }
 
-    simpleAction = (event) => {
-      this.props.simpleAction();
+    componentDidMount = () => {
+      this.props.listBooksAction();
     }
   };
 
 const mapDispatchToProps = dispatch => ({
-  simpleAction: () => dispatch(simpleAction())
+  listBooksAction: () => dispatch(listBooksAction())
 })
 
 const mapStateToProps = state => ({
-  s : state.simpleReducer
+  books : state.books
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(HomeContainer);
