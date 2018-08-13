@@ -4,7 +4,7 @@
   "description": "MVC Javascript Books Directory",
   "main": "server.js",
   "scripts": {
-    "start": "nodemon server/server.js"
+    "start": "nodemon server.js"
   },
   "author": "Luciano Santos luciusjss@gmail.com",
   "license": "ISC",

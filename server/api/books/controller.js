@@ -1,4 +1,3 @@
-const moongose = require('mongoose');
 const Book = require('./model');
 
 exports.create = async (req, res, net) => {
