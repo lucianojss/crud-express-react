@@ -9,3 +9,5 @@ client/coverage
 
 # production
 client/build
+
+.DS_STORE
