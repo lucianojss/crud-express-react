@@ -29,9 +29,9 @@ For production you can run following command that will generate a dist folder.
 
     npm run build
 
-#Run unit tests
+# Run unit tests
 
-Due the lack of time I made just unit tests for the app state management (redux)
+Due the lack of time I made just unit tests for the reducers.
 
     cd client
     npm run test
