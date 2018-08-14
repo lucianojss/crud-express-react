@@ -30,7 +30,7 @@ class BookCard extends React.Component {
                 <Card className={classes.card}>
                     <CardHeader
                         action={<div>
-                            <IconButton component={Link} to={`/book?id=${this.props.id}`}>
+                            <IconButton component={Link} to={`/book/${this.props.id}`}>
                                 <EditIcon />
                             </IconButton>
                             <IconButton>

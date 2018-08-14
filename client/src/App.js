@@ -4,8 +4,6 @@ import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import { HomeContainer, BookContainer} from './containers';
 import AppBar from './components/app-bar';
 
-console.log(BookContainer);
-
 class App extends Component {
   render() {
     return (
@@ -14,6 +12,7 @@ class App extends Component {
         <AppBar children="Javascript Books Directory"></AppBar>
         <Route exact path="/" component={HomeContainer} />
         <Route path="/book" component={BookContainer} />
+        <Route path="/book/:id" component={BookContainer} />
       </div>
     </Router>
     );
