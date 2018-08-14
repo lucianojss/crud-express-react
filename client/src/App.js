@@ -5,7 +5,7 @@ import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import { HomeContainer, BookContainer} from './containers';
 import AppBar from './components/app-bar';
 
-console.log(HomeContainer);
+console.log(BookContainer);
 
 class App extends Component {
   render() {
