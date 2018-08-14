@@ -16,14 +16,10 @@ class HomeContainer extends Component {
 
       return (
         <div>
-          <h2>Home</h2>
-
           { this.props.loading &&
             <CircularProgress size={50} />
           }
-
           { books }
-
           {this.props.error}
         </div>
       )
