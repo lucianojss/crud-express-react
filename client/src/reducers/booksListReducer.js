@@ -2,6 +2,7 @@ const initialState = {
     books: [],
     loading: false,
     error: '',
+    snackBarMessage: '',
 };
 
 export default (state = initialState, action) => {
@@ -12,7 +13,7 @@ export default (state = initialState, action) => {
                 loading: true,
                 books: [],
                 error: '',
-                snackBarSMessage: '',
+                snackBarMessage: '',
             };
         case 'LIST_BOOKS_SUCCESS':
             return {

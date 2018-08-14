@@ -2,9 +2,8 @@ import React, { Component } from 'react';
 import BookForm from '../components/BookForm';
 import LinearProgress from '@material-ui/core/LinearProgress';
 import { connect } from 'react-redux';
-import { saveBookAction, newBookAction, getBookById } from '../actions/bookActions';
+import { saveBookAction, newBookAction, getBookById, updateBookAction } from '../actions/bookActions';
 import { Redirect } from 'react-router-dom';
-import { stat } from 'fs';
 import Snackbar from '@material-ui/core/Snackbar';
 
 class BookContainer extends Component {
@@ -42,7 +41,12 @@ class BookContainer extends Component {
     }
 
     save(book) {
-        this.props.saveBookAction(book);
+        if (!this.props.match.params.id) {
+            this.props.saveBookAction(book);
+        } else {
+            console.log(book, 'ssss');
+            this.props.updateBookAction(book);
+        }
     }
 
     componentDidMount = () => {
@@ -58,6 +62,7 @@ class BookContainer extends Component {
 
 const mapDispatchToProps = dispatch => ({
     saveBookAction: book => dispatch(saveBookAction(book)),
+    updateBookAction: book => dispatch(updateBookAction(book)),
     newBookAction: () => dispatch(newBookAction()),
     getBookById: id => dispatch(getBookById(id)),
 });
