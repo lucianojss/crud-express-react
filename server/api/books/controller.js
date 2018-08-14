@@ -2,7 +2,6 @@ const Book = require('./model');
 
 exports.create = async (req, res, next) => {
     try {
-        console.log(req);
         const {
             title,
             description,

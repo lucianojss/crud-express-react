@@ -12,7 +12,8 @@ export default (state = initialState, action) => {
                 ...state,
                 loading: true,
                 books: [],
-                error: ''
+                error: '',
+                snackBarSMessage: ''
             };
         case 'LIST_BOOKS_SUCCESS':
             return {
@@ -27,7 +28,25 @@ export default (state = initialState, action) => {
                 books: [],
                 error: 'Error loading books'
             };
-
+        case 'DELETING_BOOK':
+            return {
+                ...state,
+                loading: true,
+                snackBarMessage: ''
+            }
+        case 'DELETE_BOOK_SUCCESS': {
+            return {
+                ...state,
+                loading: false
+            }
+        }
+        case 'DELETE_BOOK_ERROR': {
+            return {
+                ...state,
+                loading: false,
+                snackBarMessage: 'Error deleting the book, try again later'
+            }
+        }
         default:
             return state;
     }

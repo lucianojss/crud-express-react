@@ -47,7 +47,6 @@ class BookForm extends React.Component {
 
         return (
             <form className={classes.form} onSubmit={this.submit}>
-                <h2 className={classes.bookTitle}>Create Book</h2>
                 <TextField
                     required
                     name="title"
@@ -87,9 +86,16 @@ class BookForm extends React.Component {
         event.preventDefault();
         this.props.onSave(this.state);
     }
+
+    componentDidMount(){
+        if(this.props.book){
+            this.setState(this.props.book);
+        }
+    }
 }
 BookForm.propTypes = {
     classes: PropTypes.object.isRequired,
-    onSave: PropTypes.func.isRequired
+    onSave: PropTypes.func.isRequired,
+    book: PropTypes.object
 }
 export default withStyles(styles)(BookForm)

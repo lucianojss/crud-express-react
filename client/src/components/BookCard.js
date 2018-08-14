@@ -9,11 +9,12 @@ import IconButton from '@material-ui/core/IconButton'
 import Typography from '@material-ui/core/Typography'
 import DeleteIcon from '@material-ui/icons/Delete'
 import EditIcon from '@material-ui/icons/Edit'
-import { Link } from "react-router-dom";
+import { Link } from "react-router-dom"
 
 const styles = () => ({
     card: {
-        maxWidth: '100%'
+        maxWidth: '100%',
+        margin: 10
     },
     media: {
         height: 0
@@ -22,31 +23,30 @@ const styles = () => ({
         display: 'flex'
     }
 })
+
 class BookCard extends Component {
     render() {
         const { classes } = this.props
         return (
-            <div>
-                <Card className={classes.card}>
-                    <CardHeader
-                        action={<div>
-                            <IconButton component={Link} to={`/book/${this.props.id}`}>
-                                <EditIcon />
-                            </IconButton>
-                            <IconButton onClick={() => this.props.onDelete(this.props.id)}>
-                                <DeleteIcon />
-                            </IconButton></div>
-                        }
-                        title={this.props.title}
-                        subheader={this.props.author}
-                    />
-                    <CardContent>
-                        <Typography component="p">
-                        {this.props.description}
-                        </Typography>
-                    </CardContent>
-                </Card>
-            </div>
+            <Card className={classes.card}>
+                <CardHeader
+                    action={<div>
+                        <IconButton component={Link} to={`/book/${this.props.id}`}>
+                            <EditIcon />
+                        </IconButton>
+                        <IconButton onClick={() => this.props.onDelete(this.props.id)}>
+                            <DeleteIcon />
+                        </IconButton></div>
+                    }
+                    title={this.props.title}
+                    subheader={this.props.author}
+                />
+                <CardContent>
+                    <Typography component="p">
+                    {this.props.description}
+                    </Typography>
+                </CardContent>
+            </Card>
         )
     }
 }

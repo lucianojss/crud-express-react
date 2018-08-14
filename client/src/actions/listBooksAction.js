@@ -1,10 +1,10 @@
 import { apiUrl } from '../config';
 
-export const listBooksAction = () => async dispatch => {
+export const listBooksAction = (query) => async dispatch => {
     dispatch({
      type: 'LIST_BOOKS_FETCH'
     });
-
+    console.log(query,'query');
     try {
         const response = await fetch(`${apiUrl}/books`);
         const books = await response.json();
@@ -23,23 +23,24 @@ export const listBooksAction = () => async dispatch => {
 
 export const deleteBookAction = (id) => async dispatch => {
     const options = {
-        method: 'delete',
-        'Content-Type': 'application/x-www-form-urlencoded'
+        method: 'delete'
     }
 
     dispatch({
-        type: 'LIST_BOOKS_FETCH'
+        type: 'DELETING_BOOK'
     });
 
     try {
         const response = await fetch(`${apiUrl}/books/${id}`, options);
-        const books = await response.json();
+        const deletedBook = await response.json();
 
-        listBooksAction();
+        dispatch({
+            type: 'DELETE_BOOK_SUCCESS'
+        });
 
     } catch(error) {
         dispatch({
-            type: 'LIST_BOOKS_ERROR'
+            type: 'DELETE_BOOK_ERROR'
         });
     }
 };

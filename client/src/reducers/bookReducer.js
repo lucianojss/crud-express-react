@@ -9,7 +9,7 @@ const initialState = {
 
 export default (state = initialState, action) => {
     switch (action.type) {
-        case 'BOOK_SAVE':
+        case 'BOOK_LOADING':
             return {
                 ...state,
                 loading: true,
@@ -27,6 +27,20 @@ export default (state = initialState, action) => {
                 loading: false,
                 error: 'Error saving book, try again later'
             };
+        case 'NEW_BOOK':
+            return initialState;
+        case 'BOOK_GET_SUCCESS':
+            return {
+                ...state,
+                loading: false,
+                book: action.payload
+            }
+        case 'BOOK_GET_ERROR':
+            return {
+                ...state,
+                loading: false,
+                error: 'Error getting this book, try again later'
+            }
         default:
             return state;
     }

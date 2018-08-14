@@ -2,7 +2,9 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import BookCard from '../components/BookCard';
 import { listBooksAction, deleteBookAction } from '../actions/listBooksAction'
-import CircularProgress from '@material-ui/core/CircularProgress';
+import LinearProgress from '@material-ui/core/LinearProgress';
+import Snackbar from '@material-ui/core/Snackbar';
+import TextField from '@material-ui/core/TextField';
 
 class HomeContainer extends Component {
   constructor(props){
@@ -25,16 +27,35 @@ class HomeContainer extends Component {
       return (
         <div>
           { this.props.loading &&
-            <CircularProgress size={50} />
+            <LinearProgress color='secondary' />
           }
+          <TextField
+              name="search"
+              label="Search your Book here"
+              onChange={this.handleInputChange}
+          />
           { books }
           {this.props.error}
+
+          <Snackbar
+          anchorOrigin={{
+            vertical: 'bottom',
+            horizontal: 'center',
+          }}
+          open={!!this.props.snackBarMessage}
+          autoHideDuration={3000}
+          message={<span id="message-id">{this.props.snackBarMessage}</span>}
+        />
+
         </div>
       )
     }
 
-    deleteBook(id) {
-      this.props.deleteBookAction(id);
+    async deleteBook(id) {
+      await this.props.deleteBookAction(id);
+      if (!this.props.snackBarMessage) {
+        await this.props.listBooksAction();
+      }
     }
 
     componentDidMount = () => {
@@ -43,14 +64,15 @@ class HomeContainer extends Component {
   };
 
 const mapDispatchToProps = dispatch => ({
-  listBooksAction: () => dispatch(listBooksAction()),
+  listBooksAction: (query) => dispatch(listBooksAction(query)),
   deleteBookAction: (id) => dispatch(deleteBookAction(id)),
 })
 
 const mapStateToProps = state => ({
   books : state.books.books,
   loading: state.books.loading,
-  error: state.books.error
+  error: state.books.error,
+  snackBarMessage: state.books.snackBarMessage
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(HomeContainer);

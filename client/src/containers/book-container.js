@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import BookForm from '../components/BookForm';
-import CircularProgress from '@material-ui/core/CircularProgress';
+import LinearProgress from '@material-ui/core/LinearProgress';
 import { connect } from 'react-redux';
-import { saveBookAction } from '../actions/bookActions'
+import { saveBookAction, newBookAction, getBookById } from '../actions/bookActions'
 import { Redirect } from "react-router-dom";
+import { stat } from 'fs';
+import Snackbar from '@material-ui/core/Snackbar';
 
 class BookContainer extends Component {
   constructor(props){
@@ -20,10 +22,25 @@ class BookContainer extends Component {
       <div>
 
         { this.props.isLoading &&
-          <CircularProgress size={50} />
+          <LinearProgress color='secondary' />
         }
 
-        <BookForm onSave={this.save}/>
+        {
+          (this.props.book.title || !this.props.match.params.id) &&
+          <BookForm book={this.props.book} onSave={this.save}/>
+        }
+
+        { this.props.error &&
+          <Snackbar
+          anchorOrigin={{
+            vertical: 'bottom',
+            horizontal: 'center',
+          }}
+          open={!!this.props.error}
+          autoHideDuration={2000}
+          message={<span id="message-id">{this.props.error}</span>}
+        />
+        }
       </div>
     )
   }
@@ -33,17 +50,27 @@ class BookContainer extends Component {
   }
 
   componentDidMount = () => {
-    // this.props.listBooksAction();
+    if(this.props.match.params.id){
+      this.props.getBookById(this.props.match.params.id);
+    }
+  }
+
+  componentWillUnmount = () => {
+    this.props.newBookAction();
   }
 };
 
 const mapDispatchToProps = dispatch => ({
-    saveBookAction: (book) => dispatch(saveBookAction(book))
+    saveBookAction: (book) => dispatch(saveBookAction(book)),
+    newBookAction: () => dispatch(newBookAction()),
+    getBookById: (id) => dispatch(getBookById(id))
 })
 
 const mapStateToProps = state => ({
   isLoading: state.book.isLoading,
-  saved: state.book.saved
+  saved: state.book.saved,
+  error: state.book.error,
+  book: state.book.book
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(BookContainer);
