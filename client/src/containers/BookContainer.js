@@ -44,7 +44,6 @@ class BookContainer extends Component {
         if (!this.props.match.params.id) {
             this.props.saveBookAction(book);
         } else {
-            console.log(book, 'ssss');
             this.props.updateBookAction(book);
         }
     }

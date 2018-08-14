@@ -1,6 +1,11 @@
 import fetchTimeout from '../utils/fetch';
 import { apiUrl } from '../config';
 
+/**
+ * Save a new book
+ *
+ * @param {Object} book - book to be created
+ */
 export const saveBookAction = book => async dispatch => {
     dispatch({
         type: 'BOOK_LOADING',
@@ -30,6 +35,10 @@ export const saveBookAction = book => async dispatch => {
     }
 };
 
+/**
+ * Update Book action
+ * @param {Object} book - Book to update
+ */
 export const updateBookAction = book => async dispatch => {
     dispatch({
         type: 'BOOK_LOADING',
@@ -40,8 +49,6 @@ export const updateBookAction = book => async dispatch => {
         author: book.author,
         description: book.description,
     };
-
-    console.log(bookToUpdate);
 
     const options = {
         method: 'put',
@@ -55,12 +62,12 @@ export const updateBookAction = book => async dispatch => {
         const response = await fetchTimeout(`${apiUrl}/books/${book._id}`, options);
         const savedBook = await response.json();
 
-        dispatch({
+        return dispatch({
             type: 'BOOK_SAVE_SUCCESS',
             payload: savedBook,
         });
     } catch (error) {
-        dispatch({
+        return dispatch({
             type: 'BOOK_SAVE_ERROR',
             payload: error,
         });
@@ -68,11 +75,15 @@ export const updateBookAction = book => async dispatch => {
 };
 
 export const newBookAction = () => dispatch => {
-    dispatch({
+    return dispatch({
         type: 'NEW_BOOK',
     });
 };
 
+/**
+ * Get book by Id
+ * @param {String} id - Book id to be fetched
+ */
 export const getBookById = id => async dispatch => {
     dispatch({
         type: 'BOOK_LOADING',
@@ -82,12 +93,12 @@ export const getBookById = id => async dispatch => {
         const response = await fetchTimeout(`${apiUrl}/books/${id}`);
         const book = await response.json();
 
-        dispatch({
+        return dispatch({
             type: 'BOOK_GET_SUCCESS',
             payload: book,
         });
     } catch (error) {
-        dispatch({
+        return dispatch({
             type: 'BOOK_GET_ERROR',
             payload: error,
         });

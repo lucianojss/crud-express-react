@@ -31,7 +31,7 @@ For production you can run following command that will generate a dist folder.
 
 #Run unit tests
 
-Due the lack of time I made just part of unit tests for app state management (redux)
+Due the lack of time I made just unit tests for the app state management (redux)
 
     cd client
     npm run test

@@ -11,12 +11,12 @@ export const listBooksAction = query => async dispatch => {
         const response = await fetchTimeout(request);
         const books = await response.json();
 
-        dispatch({
+        return dispatch({
             type: 'LIST_BOOKS_SUCCESS',
             payload: books,
         });
     } catch (error) {
-        dispatch({
+        return dispatch({
             type: 'LIST_BOOKS_ERROR',
         });
     }
@@ -39,9 +39,9 @@ export const deleteBookAction = id => async dispatch => {
             type: 'DELETE_BOOK_SUCCESS',
         });
 
-        dispatch(listBooksAction());
+        return dispatch(listBooksAction());
     } catch (error) {
-        dispatch({
+        return dispatch({
             type: 'DELETE_BOOK_ERROR',
         });
     }

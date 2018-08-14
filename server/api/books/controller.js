@@ -31,7 +31,6 @@ exports.update = async (req, res, next) => {
         );
         res.send(updatedBook);
     } catch (error) {
-        console.log(error);
         next(error);
     }
 };

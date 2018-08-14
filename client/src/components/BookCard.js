@@ -43,7 +43,7 @@ class BookCard extends Component {
                     subheader={this.props.author}
                 />
                 <CardContent>
-                    <Typography component="p">{this.props.description}</Typography>
+                    <Typography>{this.props.description}</Typography>
                 </CardContent>
             </Card>
         );
