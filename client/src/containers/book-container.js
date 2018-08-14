@@ -2,16 +2,26 @@ import React, { Component } from 'react';
 import BookForm from '../components/BookForm';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import { connect } from 'react-redux';
+import { saveBookAction } from '../actions/bookActions'
+import { Redirect } from "react-router-dom";
 
 class BookContainer extends Component {
+  constructor(props){
+    super(props)
+    this.save = this.save.bind(this);
+  }
+
   render() {
+    if (this.props.saved){
+      return  <Redirect to='/'/>
+    }
+
     return (
       <div>
-        <h2>Home</h2>
 
-        {/* { this.props.books.loading &&
+        { this.props.isLoading &&
           <CircularProgress size={50} />
-        } */}
+        }
 
         <BookForm onSave={this.save}/>
       </div>
@@ -19,7 +29,7 @@ class BookContainer extends Component {
   }
 
   save(book) {
-    console.log('ssss',book);
+    this.props.saveBookAction(book);
   }
 
   componentDidMount = () => {
@@ -28,11 +38,12 @@ class BookContainer extends Component {
 };
 
 const mapDispatchToProps = dispatch => ({
-  // listBooksAction: () => dispatch(listBooksAction())
+    saveBookAction: (book) => dispatch(saveBookAction(book))
 })
 
 const mapStateToProps = state => ({
-  book : state.book
+  isLoading: state.book.isLoading,
+  saved: state.book.saved
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(BookContainer);
