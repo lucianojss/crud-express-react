@@ -12,14 +12,6 @@ class App extends Component {
       <Router>
       <div>
         <AppBar children="Javascript Books Directory"></AppBar>
-        <ul>
-          <li>
-            <Link to="/">List Books</Link>
-          </li>
-          <li>
-            <Link to="/book">New Book</Link>
-          </li>
-        </ul>
         <Route exact path="/" component={HomeContainer} />
         <Route path="/book" component={BookContainer} />
       </div>
