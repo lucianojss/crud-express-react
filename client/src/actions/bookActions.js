@@ -1,6 +1,6 @@
-export const saveBookAction = (book) => async dispatch => {
+export const saveBookAction = book => async dispatch => {
     dispatch({
-     type: 'BOOK_LOADING'
+        type: 'BOOK_LOADING',
     });
 
     const options = {
@@ -8,7 +8,7 @@ export const saveBookAction = (book) => async dispatch => {
         headers: {
             'Content-Type': 'application/json; charset=utf-8',
         },
-        body: JSON.stringify(book)
+        body: JSON.stringify(book),
     };
 
     try {
@@ -17,26 +17,25 @@ export const saveBookAction = (book) => async dispatch => {
 
         dispatch({
             type: 'BOOK_SAVE_SUCCESS',
-            payload: savedBook
+            payload: savedBook,
         });
-
     } catch (error) {
         dispatch({
             type: 'BOOK_SAVE_ERROR',
-            payload: error
+            payload: error,
         });
     }
-}
+};
 
-export const newBookAction = () => dispatch => {
+export const newBookAction = () => dispatch => {
     dispatch({
-        type: 'NEW_BOOK'
+        type: 'NEW_BOOK',
     });
-}
+};
 
-export const getBookById = (id) => async dispatch => {
+export const getBookById = id => async dispatch => {
     dispatch({
-     type: 'BOOK_LOADING'
+        type: 'BOOK_LOADING',
     });
 
     try {
@@ -45,13 +44,12 @@ export const getBookById = (id) => async dispatch => {
 
         dispatch({
             type: 'BOOK_GET_SUCCESS',
-            payload: book
+            payload: book,
         });
-
     } catch (error) {
         dispatch({
             type: 'BOOK_GET_ERROR',
-            payload: error
+            payload: error,
         });
     }
-}
+};

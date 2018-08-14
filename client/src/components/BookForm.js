@@ -1,26 +1,26 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import { withStyles } from '@material-ui/core/styles'
+import React from 'react';
+import PropTypes from 'prop-types';
+import { withStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 
 const styles = () => ({
     textField: {
         width: '100%',
-        marginBottom: 20
+        marginBottom: 20,
     },
     form: {
-        margin: 10
+        margin: 10,
     },
     button: {
-        width: '100%'
+        width: '100%',
     },
     bookTitle: {
-        textAlign: 'center'
-    }
-})
+        textAlign: 'center',
+    },
+});
 class BookForm extends React.Component {
-    constructor(props){
+    constructor(props) {
         super(props);
         this.submit = this.submit.bind(this);
         this.handleInputChange = this.handleInputChange.bind(this);
@@ -28,7 +28,7 @@ class BookForm extends React.Component {
         this.state = {
             title: '',
             description: '',
-            author: ''
+            author: '',
         };
     }
 
@@ -38,12 +38,12 @@ class BookForm extends React.Component {
         const name = target.name;
 
         this.setState({
-          [name]: value
+            [name]: value,
         });
     }
 
     render() {
-        const { classes } = this.props
+        const { classes } = this.props;
 
         return (
             <form className={classes.form} onSubmit={this.submit}>
@@ -79,7 +79,7 @@ class BookForm extends React.Component {
                     Save
                 </Button>
             </form>
-        )
+        );
     }
 
     submit(event) {
@@ -87,8 +87,8 @@ class BookForm extends React.Component {
         this.props.onSave(this.state);
     }
 
-    componentDidMount(){
-        if(this.props.book){
+    componentDidMount() {
+        if (this.props.book) {
             this.setState(this.props.book);
         }
     }
@@ -96,6 +96,6 @@ class BookForm extends React.Component {
 BookForm.propTypes = {
     classes: PropTypes.object.isRequired,
     onSave: PropTypes.func.isRequired,
-    book: PropTypes.object
-}
-export default withStyles(styles)(BookForm)
+    book: PropTypes.object,
+};
+export default withStyles(styles)(BookForm);

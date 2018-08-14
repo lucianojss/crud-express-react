@@ -1,15 +1,15 @@
 {
-    "extends": ["plugin:jest/recommended"],
-    "plugins": ["import", "jest"],
-    "env": {
-        "node": true,
-        "jest/globals": true
-    },
-    "parserOptions": {
-        "ecmaVersion": 8
-    },
-    "rules": {
-        "indent": ["error", 4],
-        "quotes": ["error", "single"]
-    }
+	"extends": ["plugin:jest/recommended"],
+	"plugins": ["import", "jest"],
+	"env": {
+		"node": true,
+		"jest/globals": true
+	},
+	"parserOptions": {
+		"ecmaVersion": 8
+	},
+	"rules": {
+		"indent": ["error", 4],
+		"quotes": ["error", "single"]
+	}
 }

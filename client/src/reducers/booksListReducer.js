@@ -1,9 +1,8 @@
-
 const initialState = {
     books: [],
     loading: false,
-    error: ''
-}
+    error: '',
+};
 
 export default (state = initialState, action) => {
     switch (action.type) {
@@ -13,41 +12,41 @@ export default (state = initialState, action) => {
                 loading: true,
                 books: [],
                 error: '',
-                snackBarSMessage: ''
+                snackBarSMessage: '',
             };
         case 'LIST_BOOKS_SUCCESS':
             return {
                 ...state,
                 loading: false,
-                books: action.payload
+                books: action.payload,
             };
         case 'LIST_BOOKS_ERROR':
             return {
                 ...state,
                 loading: false,
                 books: [],
-                error: 'Error loading books'
+                error: 'Error loading books',
             };
         case 'DELETING_BOOK':
             return {
                 ...state,
                 loading: true,
-                snackBarMessage: ''
-            }
+                snackBarMessage: '',
+            };
         case 'DELETE_BOOK_SUCCESS': {
             return {
                 ...state,
-                loading: false
-            }
+                loading: false,
+            };
         }
         case 'DELETE_BOOK_ERROR': {
             return {
                 ...state,
                 loading: false,
-                snackBarMessage: 'Error deleting the book, try again later'
-            }
+                snackBarMessage: 'Error deleting the book, try again later',
+            };
         }
         default:
             return state;
     }
-}
+};

@@ -1,33 +1,32 @@
 import { apiUrl } from '../config';
 
-export const listBooksAction = (query) => async dispatch => {
+export const listBooksAction = query => async dispatch => {
     dispatch({
-     type: 'LIST_BOOKS_FETCH'
+        type: 'LIST_BOOKS_FETCH',
     });
-    console.log(query,'query');
+    console.log(query, 'query');
     try {
         const response = await fetch(`${apiUrl}/books`);
         const books = await response.json();
 
         dispatch({
             type: 'LIST_BOOKS_SUCCESS',
-            payload: books
+            payload: books,
         });
-
-    } catch(error) {
+    } catch (error) {
         dispatch({
-            type: 'LIST_BOOKS_ERROR'
+            type: 'LIST_BOOKS_ERROR',
         });
     }
-}
+};
 
-export const deleteBookAction = (id) => async dispatch => {
+export const deleteBookAction = id => async dispatch => {
     const options = {
-        method: 'delete'
-    }
+        method: 'delete',
+    };
 
     dispatch({
-        type: 'DELETING_BOOK'
+        type: 'DELETING_BOOK',
     });
 
     try {
@@ -35,12 +34,11 @@ export const deleteBookAction = (id) => async dispatch => {
         const deletedBook = await response.json();
 
         dispatch({
-            type: 'DELETE_BOOK_SUCCESS'
+            type: 'DELETE_BOOK_SUCCESS',
         });
-
-    } catch(error) {
+    } catch (error) {
         dispatch({
-            type: 'DELETE_BOOK_ERROR'
+            type: 'DELETE_BOOK_ERROR',
         });
     }
 };
