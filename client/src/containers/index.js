@@ -1,4 +1,4 @@
-import HomeContainer from './home-container';
-import BookContainer from './book-container';
+import HomeContainer from './HomeContainer';
+import BookContainer from './BookContainer';
 
 export { HomeContainer, BookContainer };
