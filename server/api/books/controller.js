@@ -1,14 +1,18 @@
 const Book = require('./model');
 
-exports.create = async (req, res, net) => {
+exports.create = async (req, res, next) => {
     try {
 
-        const {title, description, releaseDate} = req.body;
+        const {
+            title,
+            description,
+            author
+        } = req.body;
 
         const bookToSave = new Book({
             title,
             description,
-            releaseDate: new Date(req.body.releaseDate)
+            author
         });
 
         data = await bookToSave.save();
@@ -21,14 +25,17 @@ exports.create = async (req, res, net) => {
 
 exports.update = async (req, res, next) => {
     try {
-        const fieldsToUpdate = {
-            title: req.body.title,
-            description: req.body.description,
-            releaseDate: new Date(req.body.releaseDate)
-        };
+        const {
+            title,
+            description,
+            author
+        } = req.body;
 
-        const updatedBook = await Book.findByIdAndUpdate(req.params.id, {$set: fieldsToUpdate}, {new: true});
-
+        const updatedBook = await Book.findByIdAndUpdate(req.params.id, {
+            $set: fieldsToUpdate
+        }, {
+            new: true
+        });
         res.send(updatedBook);
 
     } catch (error) {

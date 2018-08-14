@@ -13,8 +13,8 @@ const BookSchema = new Schema({
         required: true,
         trim: true
     },
-    releaseDate: {
-        type: Date,
+    author: {
+        type: String,
         required: true,
         trim: true
     }
