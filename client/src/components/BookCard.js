@@ -9,6 +9,7 @@ import IconButton from '@material-ui/core/IconButton'
 import Typography from '@material-ui/core/Typography'
 import DeleteIcon from '@material-ui/icons/Delete'
 import EditIcon from '@material-ui/icons/Edit'
+import { Link } from "react-router-dom";
 
 const styles = () => ({
     card: {
@@ -29,7 +30,7 @@ class BookCard extends React.Component {
                 <Card className={classes.card}>
                     <CardHeader
                         action={<div>
-                            <IconButton>
+                            <IconButton component={Link} to={`/book/${this.props.id}`}>
                                 <EditIcon />
                             </IconButton>
                             <IconButton>
@@ -53,6 +54,7 @@ BookCard.propTypes = {
     classes: PropTypes.object.isRequired,
     title: PropTypes.string,
     description: PropTypes.string,
-    author:  PropTypes.string,
+    author: PropTypes.string,
+    id: PropTypes.string
 }
 export default withStyles(styles)(BookCard)

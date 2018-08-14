@@ -11,6 +11,7 @@ class HomeContainer extends Component {
           title={book.title}
           description={book.description}
           author={book.author}
+          id={book._id}
           key={book._id} />
       );
 
