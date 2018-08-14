@@ -2,13 +2,11 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import BookCard from '../components/BookCard';
 import { withStyles } from '@material-ui/core/styles';
-import PropTypes from 'prop-types';
 
 import { listBooksAction, deleteBookAction } from '../actions/listBooksAction';
 import LinearProgress from '@material-ui/core/LinearProgress';
 import Snackbar from '@material-ui/core/Snackbar';
 import TextField from '@material-ui/core/TextField';
-import Button from '@material-ui/core/Button';
 import debounce from '../utils/debounce';
 
 const styles = () => ({

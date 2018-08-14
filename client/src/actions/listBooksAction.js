@@ -33,7 +33,7 @@ export const deleteBookAction = id => async dispatch => {
 
     try {
         const response = await fetchTimeout(`${apiUrl}/books/${id}`, options);
-        const deletedBook = await response.json();
+        await response.json();
 
         dispatch({
             type: 'DELETE_BOOK_SUCCESS',
