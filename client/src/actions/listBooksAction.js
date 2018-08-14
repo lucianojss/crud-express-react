@@ -20,3 +20,26 @@ export const listBooksAction = () => async dispatch => {
         });
     }
 }
+
+export const deleteBookAction = (id) => async dispatch => {
+    const options = {
+        method: 'delete',
+        'Content-Type': 'application/x-www-form-urlencoded'
+    }
+
+    dispatch({
+        type: 'LIST_BOOKS_FETCH'
+    });
+
+    try {
+        const response = await fetch(`${apiUrl}/books/${id}`, options);
+        const books = await response.json();
+
+        listBooksAction();
+
+    } catch(error) {
+        dispatch({
+            type: 'LIST_BOOKS_ERROR'
+        });
+    }
+};

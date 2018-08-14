@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Component } from 'react';
 import PropTypes from 'prop-types'
 import { withStyles } from '@material-ui/core/styles'
 import Card from '@material-ui/core/Card'
@@ -22,7 +22,7 @@ const styles = () => ({
         display: 'flex'
     }
 })
-class BookCard extends React.Component {
+class BookCard extends Component {
     render() {
         const { classes } = this.props
         return (
@@ -33,7 +33,7 @@ class BookCard extends React.Component {
                             <IconButton component={Link} to={`/book/${this.props.id}`}>
                                 <EditIcon />
                             </IconButton>
-                            <IconButton>
+                            <IconButton onClick={() => this.props.onDelete(this.props.id)}>
                                 <DeleteIcon />
                             </IconButton></div>
                         }
@@ -55,6 +55,7 @@ BookCard.propTypes = {
     title: PropTypes.string,
     description: PropTypes.string,
     author: PropTypes.string,
-    id: PropTypes.string
+    id: PropTypes.string,
+    onDelete: PropTypes.func
 }
 export default withStyles(styles)(BookCard)
