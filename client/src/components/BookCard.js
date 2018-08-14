@@ -23,7 +23,6 @@ const styles = () => ({
 class BookCard extends React.Component {
     render() {
         const { classes } = this.props
-        //console.log(this.props.releaseDate.toLocaleDateString())
         return (
             <div>
                 <Card className={classes.card}>
@@ -34,7 +33,7 @@ class BookCard extends React.Component {
                             </IconButton>
                         }
                         title={this.props.title}
-                        subheader={`Release date: ${this.props.releaseDate}`}
+                        subheader={this.props.author}
                     />
                     <CardContent>
                         <Typography component="p">
@@ -50,6 +49,6 @@ BookCard.propTypes = {
     classes: PropTypes.object.isRequired,
     title: PropTypes.string,
     description: PropTypes.string,
-    releaseDate:  PropTypes.string,
+    author:  PropTypes.string,
 }
 export default withStyles(styles)(BookCard)

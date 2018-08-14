@@ -6,22 +6,24 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 
 class HomeContainer extends Component {
     render() {
-      const books = this.props.books.books.map((book) =>
+      const books = this.props.books.map((book) =>
         <BookCard
           title={book.title}
           description={book.description}
-          releaseDate= {book.releaseDate}
+          author={book.author}
           key={book._id} />
       );
       return (
         <div>
           <h2>Home</h2>
 
-          { this.props.books.loading &&
+          { this.props.loading &&
             <CircularProgress size={50} />
           }
 
           { books }
+
+          {this.props.error}
         </div>
       )
     }
@@ -36,7 +38,9 @@ const mapDispatchToProps = dispatch => ({
 })
 
 const mapStateToProps = state => ({
-  books : state.books
+  books : state.books.books,
+  loading: state.books.loading,
+  error: state.books.error
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(HomeContainer);

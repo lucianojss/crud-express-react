@@ -1,8 +1,8 @@
 
-
 const initialState = {
     books: [],
-    loading: false
+    loading: false,
+    error: ''
 }
 
 export default (state = initialState, action) => {
@@ -10,13 +10,22 @@ export default (state = initialState, action) => {
         case 'LIST_BOOKS_FETCH':
             return {
                 ...state,
-                loading: true
+                loading: true,
+                books: [],
+                error: ''
             };
         case 'LIST_BOOKS_SUCCESS':
             return {
                 ...state,
                 loading: false,
                 books: action.payload
+            };
+        case 'LIST_BOOKS_ERROR':
+            return {
+                ...state,
+                loading: false,
+                books: [],
+                error: 'Error loading books'
             };
 
         default:
