@@ -7,7 +7,8 @@ import CardMedia from '@material-ui/core/CardMedia'
 import CardContent from '@material-ui/core/CardContent'
 import IconButton from '@material-ui/core/IconButton'
 import Typography from '@material-ui/core/Typography'
-import MoreVertIcon from '@material-ui/icons/MoreVert'
+import DeleteIcon from '@material-ui/icons/Delete'
+import EditIcon from '@material-ui/icons/Edit'
 
 const styles = () => ({
     card: {
@@ -27,10 +28,13 @@ class BookCard extends React.Component {
             <div>
                 <Card className={classes.card}>
                     <CardHeader
-                        action={
+                        action={<div>
                             <IconButton>
-                                <MoreVertIcon />
+                                <EditIcon />
                             </IconButton>
+                            <IconButton>
+                                <DeleteIcon />
+                            </IconButton></div>
                         }
                         title={this.props.title}
                         subheader={this.props.author}

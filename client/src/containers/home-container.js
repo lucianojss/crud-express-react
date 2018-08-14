@@ -13,6 +13,7 @@ class HomeContainer extends Component {
           author={book.author}
           key={book._id} />
       );
+
       return (
         <div>
           <h2>Home</h2>
