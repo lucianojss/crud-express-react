@@ -28,3 +28,10 @@ You can set api address at config.js
 For production you can run following command that will generate a dist folder.
 
     npm run build
+
+#Run unit tests
+
+Due the lack of time I made just part of unit tests for app state management (redux)
+
+    cd client
+    npm run test
