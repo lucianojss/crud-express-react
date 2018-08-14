@@ -11,7 +11,7 @@ To run locally the app, you need to have installed and running NodeJS and mongoD
 
 # Run server locally
 
-You can set port and mongoDB address in .env file.
+You can set express server port and mongoDB address in .env file.
 
     cd server
     npm install
