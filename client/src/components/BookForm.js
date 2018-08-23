@@ -88,9 +88,11 @@ class BookForm extends React.Component {
     }
 
     componentDidMount() {
-        if (this.props.book) {
-            this.setState(this.props.book);
-        }
+        this.setState(this.props.book);
+    }
+
+    UNSAFE_componentWillReceiveProps(ble) {
+        this.setState(ble.book);
     }
 }
 BookForm.propTypes = {

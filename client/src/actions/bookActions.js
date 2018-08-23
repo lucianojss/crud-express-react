@@ -21,6 +21,9 @@ export const saveBookAction = book => async dispatch => {
 
     try {
         const response = await fetchTimeout(`${apiUrl}/books/`, options);
+        if (!response.ok) {
+            throw response;
+        }
         const savedBook = await response.json();
 
         dispatch({
@@ -60,6 +63,9 @@ export const updateBookAction = book => async dispatch => {
 
     try {
         const response = await fetchTimeout(`${apiUrl}/books/${book._id}`, options);
+        if (!response.ok) {
+            throw response;
+        }
         const savedBook = await response.json();
 
         return dispatch({
@@ -91,6 +97,10 @@ export const getBookById = id => async dispatch => {
 
     try {
         const response = await fetchTimeout(`${apiUrl}/books/${id}`);
+        if (!response.ok) {
+            throw response;
+        }
+
         const book = await response.json();
 
         return dispatch({

@@ -19,7 +19,7 @@ class BookContainer extends Component {
 
         return (
             <div>
-                {this.props.isLoading && <LinearProgress color="secondary" />}
+                {this.props.loading && <LinearProgress color="secondary" />}
 
                 {(this.props.book.title || !this.props.match.params.id) && (
                     <BookForm book={this.props.book} onSave={this.save} />
@@ -67,7 +67,7 @@ const mapDispatchToProps = dispatch => ({
 });
 
 const mapStateToProps = state => ({
-    isLoading: state.book.isLoading,
+    loading: state.book.loading,
     saved: state.book.saved,
     error: state.book.error,
     book: state.book.book,

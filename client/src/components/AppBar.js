@@ -26,7 +26,6 @@ const AppBar = props => {
                     <Typography variant="title" color="inherit" className={classes.flex}>
                         {children}
                     </Typography>
-
                     <Button color="inherit" component={Link} to="/">
                         List Books
                     </Button>
